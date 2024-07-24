@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.alpine
     ports:
       - "3000:3000"
     environment:
@@ -11,7 +13,9 @@ services:
       - backend
 
   backend:
-    build: ./backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.alpine
     ports:
       - "5000:5000"
     environment:
@@ -20,7 +24,7 @@ services:
       - mongodb
 
   mongodb:
-    image: mongo:4.4.18
+    image: localhost:5000/mongo:4.4.18-alpine
     volumes:
       - mongodb_data:/data/db
       - ./database/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
@@ -28,7 +32,7 @@ services:
       - MONGO_INITDB_DATABASE=innovacion_fp
 
   nginx:
-    image: nginx:1.21.6-alpine
+    image: localhost:5000/nginx:1.21.6-alpine
     ports:
       - "80:80"
     volumes:
