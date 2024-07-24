@@ -1,10 +1,18 @@
 #!/bin/bash
 set -e
 
-# Install dependencies
+# Instala dependencias del backend
+cd backend
 npm install
 
-# Build the project
+# Instala dependencias del frontend
+cd ../frontend
+npm install
+
+# Construye el frontend
 npm run build
 
-echo "Installation and build complete. You can now run the project with 'npm start'."
+# Vuelve al directorio raíz
+cd ..
+
+echo "Instalación y construcción completadas. Puedes ejecutar la aplicación con 'npm start'."
