@@ -1,4 +1,4 @@
-# Usa la imagen oficial de Node.js 14 como base
+# Usa la imagen oficial de Node.js 14
 FROM node:14-alpine
 
 # Establece el directorio de trabajo
