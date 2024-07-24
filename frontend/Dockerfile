@@ -3,7 +3,7 @@ FROM node:14 as build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install --production
 
 COPY . .
 RUN npm run build
