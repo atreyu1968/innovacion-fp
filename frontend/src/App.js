@@ -1,23 +1,11 @@
-# Dependencies
-node_modules/
+import React from 'react';
 
-# Production
-build/
+function App() {
+  return (
+    <div className="App">
+      <h1>Bienvenido a Innovación FP</h1>
+    </div>
+  );
+}
 
-# Misc
-.DS_Store
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Editor directories and files
-.idea
-.vscode
-*.swp
-*.swo
+export default App;
