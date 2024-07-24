@@ -5,10 +5,10 @@ FROM node:14-alpine
 WORKDIR /app
 
 # Copia los archivos package.json y package-lock.json del backend
-COPY package*.json ./
+COPY backend/package*.json ./backend/
 
 # Instala las dependencias del backend
-RUN npm install
+RUN cd backend && npm install
 
 # Copia los archivos package.json y package-lock.json del frontend
 COPY frontend/package*.json ./frontend/
