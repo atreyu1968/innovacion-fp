@@ -19,11 +19,11 @@ RUN cd frontend && npm install
 # Copia el resto del código de la aplicación
 COPY . .
 
-# Construye la aplicación
-RUN npm run build
+# Construye la aplicación del frontend
+RUN cd frontend && npm run build
 
 # Expone el puerto de la aplicación
 EXPOSE 3000
 
 # Inicia la aplicación
-CMD ["npm", "start"]
+CMD ["node", "backend/server.js"]
