@@ -2,13 +2,19 @@ FROM node:14 as build
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm ci
+# Copia package.json y package-lock.json (si existe)
+COPY package*.json ./
 
+# Instala dependencias
+RUN npm install
+
+# Copia el resto de los archivos
 COPY . .
+
+# Construye la aplicación
 RUN npm run build
 
+# Etapa de producción
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
