@@ -2,17 +2,15 @@ FROM node:14 as build
 
 WORKDIR /app
 
-# Copiar solo los archivos necesarios para la instalación de dependencias
 COPY package*.json ./
-RUN npm install
 
-# Copiar el resto de los archivos de la aplicación
+# Añadir más información de depuración
+RUN npm --version && node --version
+RUN npm install --verbose || (echo "npm install failed" && cat /root/.npm/_logs/*-debug.log && exit 1)
+
 COPY . .
-
-# Construir la aplicación
 RUN npm run build
 
-# Etapa de producción
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
