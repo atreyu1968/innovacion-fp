@@ -1,23 +1,23 @@
-# Use the official Node.js 14 image
+# Usa la imagen oficial de Node.js 14
 FROM node:14-alpine
 
-# Set the working directory
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copia los archivos package.json y package-lock.json
 COPY package*.json ./
 
-# Install dependencies
+# Instala las dependencias
 RUN npm install
 
-# Copy the rest of the application code
+# Copia el resto del código de la aplicación
 COPY . .
 
-# Build the application
+# Construye la aplicación
 RUN npm run build
 
-# Expose the application port
+# Expone el puerto de la aplicación
 EXPOSE 3000
 
-# Start the application
+# Inicia la aplicación
 CMD ["npm", "start"]
