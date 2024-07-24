@@ -4,14 +4,12 @@ FROM node:14-alpine
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos package.json y package-lock.json del backend
+# Copia los archivos package.json y package-lock.json del backend y frontend
 COPY backend/package*.json ./backend/
+COPY frontend/package*.json ./frontend/
 
 # Instala las dependencias del backend
 RUN cd backend && npm install
-
-# Copia los archivos package.json y package-lock.json del frontend
-COPY frontend/package*.json ./frontend/
 
 # Instala las dependencias del frontend
 RUN cd frontend && npm install
